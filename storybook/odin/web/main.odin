@@ -206,7 +206,8 @@ key :: proc(c: int) {
 		last := app.page == app.story.count - 1
 		switch {
 		case c == gfx.KEY_SPACE || c == gfx.KEY_ENTER || c == gfx.KEY_RIGHT:
-			if last && app.shown >= f32(app.story.pages[app.page].len) {tell()} else {turn()}
+			// On the finished last page a stray tap does nothing: another story needs Y or its button.
+			if !last {turn()} else if app.shown < f32(app.story.pages[app.page].len) {turn()}
 		case c == gfx.KEY_LEFT:
 			if app.page > 0 {
 				app.page -= 1
@@ -335,7 +336,7 @@ draw_question :: proc() {
 		labels := [3]string{"1 SHE", "2 HE", "3 THEY"}
 		ids := [3]game.Pronoun{.She, .He, .They}
 		for l, i in labels {
-			gfx.button(W / 2 - 132 + i * 92, 80, l, ID_CHOICE + int(ids[i]), INK, KEYBG, 2)
+			gfx.button(W / 2 - 172 + i * 116, 80, l, ID_CHOICE + int(ids[i]), INK, KEYBG, 2)
 		}
 		gfx.text_c(W / 2, 130, "(HOW THE STORY TALKS ABOUT YOU)", SOFT)
 	} else {
