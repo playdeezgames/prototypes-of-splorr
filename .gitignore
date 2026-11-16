@@ -1,0 +1,4 @@
+/build/
+# The magazine scan and its OCR text are someone else's copyrighted work: kept locally only.
+/sources/**/*.pdf
+/sources/**/softside.txt
