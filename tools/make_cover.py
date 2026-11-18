@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draws the 630 by 500 itch.io cover: the title in Public Pixel (CC0) over four of the
+"""Draws the 630 by 500 itch.io cover: the title in Public Pixel (CC0) over six of the
 screenshots in assets/screenshots/. Run after tools/make_shots.sh."""
 import os
 import sys
@@ -23,17 +23,17 @@ def centred(y, text, size, fill):
 
 centred(20, "SOFTSIDE", 44, GOLD)
 centred(74, "PROTOTYPES", 28, INK)
-centred(114, "FIVE TYPE-INS FROM AUGUST 1979", 14, DIM)
+centred(114, "TEN TYPE-INS FROM 1978 AND 1979", 14, DIM)
 
-# Four screenshots, two by two, each 250 wide.
-tiles = ["01-melt-down", "02-shooting-gallery", "04-morse-code-tutor", "05-storybook"]
-tw, gap, top = 250, 24, 146
+# Six screenshots, three by two, each 190 wide.
+tiles = ["01-melt-down", "07-pillbox", "05-storybook", "10-cribbage", "02-shooting-gallery", "11-calculator"]
+tw, gap, top, row_h = 190, 14, 150, 156
 for i, name in enumerate(tiles):
     s = Image.open(os.path.join(SHOTS, name + ".png")).convert("RGB")
     th = round(s.height * tw / s.width)
-    s = s.resize((tw, th), Image.NEAREST if s.width % tw == 0 else Image.LANCZOS)
-    x = (W - 2 * tw - gap) // 2 + (i % 2) * (tw + gap)
-    y = top + (i // 2) * 166 + (160 - th) // 2
+    s = s.resize((tw, th), Image.LANCZOS)
+    x = (W - 3 * tw - 2 * gap) // 2 + (i % 3) * (tw + gap)
+    y = top + (i // 3) * row_h + (row_h - 12 - th) // 2
     d.rectangle([x - 2, y - 2, x + tw + 1, y + th + 1], fill=DIM)
     img.paste(s, (x, y))
 centred(H - 22, "THEGRUMPYGAMEDEV", 12, DIM)

@@ -20,6 +20,7 @@ OUT = os.path.join(ROOT, "assets", "screenshots")
 ENTER, SPACE = "Enter", " "
 STORY_KEYS = [(600, ENTER)] + [(900 + i * 120, c) for i, c in enumerate("WREN")] + \
     [(1500 + i * 150, ENTER) for i in range(10)] + [(3300, "1"), (5200, SPACE)]
+CALC_KEYS = [(2500 + i * 150, k) for i, k in enumerate(["1", "2", ENTER, "A", "3", "0", ENTER, "D", "7", ENTER, "H", "M", "2", ENTER])]
 SHOTS = [
     ("01-melt-down", "melt-down", (576, 320), [(600, "1")], 8500),
     ("02-shooting-gallery", "shooting-gallery", (384, 240),
@@ -28,6 +29,13 @@ SHOTS = [
     ("04-morse-code-tutor", "morse-code-tutor", (512, 288), [(600, "1")], 4900),
     ("05-storybook", "storybook", (512, 288), STORY_KEYS, 12500),
     ("06-melt-down-title", "melt-down", (576, 320), [], 1500),
+    # The second batch (Vol. 1 No. 1, October 1978).
+    ("07-pillbox", "pillbox", (384, 240), [(600, "1"), (2200, SPACE)], 6600),
+    ("08-gunnery-mate", "gunnery-mate", (384, 240), [(600, SPACE)], 4500),
+    ("09-state-capital-quiz", "state-capital-quiz", (384, 240), [(600, "1")], 5500),
+    ("10-cribbage", "cribbage", (512, 320),
+     [(800, SPACE), (2000, "1"), (2200, "2"), (2500, ENTER), (4600, "1"), (6400, "1")], 9000),
+    ("11-calculator", "calculator", (512, 288), CALC_KEYS, 9500),
 ]
 
 
