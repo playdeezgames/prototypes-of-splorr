@@ -100,7 +100,7 @@ start :: proc(one_player: bool) {
 	app.blasts = {}
 	app.hit_wait = 0
 	app.cpu_wait = 1.0
-	say(fmt.tprintf("%s FIRES FIRST", side_name(app.g.turn)))
+	say(fmt.tprintf("%s FIRST", fires(app.g.turn)))
 	gfx.tone(330, 90, .Square, 0.05)
 	gfx.tone(440, 140, .Square, 0.05, 100)
 }
@@ -108,6 +108,12 @@ start :: proc(one_player: bool) {
 side_name :: proc(side: int) -> string {
 	if app.one_player {return side == 0 ? "YOU" : "THE COMPUTER"}
 	return side == 0 ? "LEFT GUNNER" : "RIGHT GUNNER"
+}
+
+// "YOU FIRE" / "THE COMPUTER FIRES".
+fires :: proc(side: int) -> string {
+	if app.one_player && side == 0 {return "YOU FIRE"}
+	return fmt.tprintf("%s FIRES", side_name(side))
 }
 
 say :: proc(s: string) {
@@ -153,7 +159,7 @@ play :: proc(d: f32) {
 			} else {
 				game.after_hit(g)
 				app.cpu_wait = 1.2
-				say(fmt.tprintf("NEW GROUND. %s FIRES FIRST", side_name(g.turn)))
+				say(fmt.tprintf("NEW GROUND. %s FIRST", fires(g.turn)))
 			}
 		}
 	} else if g.winner < 0 && g.shell.state != .Flying && g.gunners[g.turn].cpu {
@@ -189,7 +195,11 @@ sounds :: proc() {
 		app.flash = 0.25
 		app.hit_wait = 2.2
 		if .Hit_Self in ev {
-			say(fmt.tprintf("%s SHELLED THEMSELVES!", side_name(g.turn)))
+			if app.one_player {
+				say(g.turn == 0 ? "YOU SHELLED YERSELF!" : "THE COMPUTER SHELLED ITSELF!")
+			} else {
+				say(fmt.tprintf("%s SHELLED THEMSELVES!", side_name(g.turn)))
+			}
 		} else {
 			say(fmt.tprintf("DIRECT HIT BY %s!", side_name(g.turn)))
 		}
