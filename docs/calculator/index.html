@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculator</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: #2b2a27; color: #a8a090; font: 13px/1.4 system-ui, sans-serif; display: flex; flex-direction: column; }
+  #stage { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; min-height: 0; padding: 8px; }
+  #screen { image-rendering: pixelated; touch-action: none; display: block; }
+  footer { flex: 0 0 auto; text-align: center; padding: 6px 16px 10px; }
+  footer a { color: #f3edda; }
+</style>
+</head>
+<body>
+<div id="stage"><canvas id="screen" width="512" height="288" aria-label="Calculator, a tool: a desk calculator that keeps a running total on a paper tape. Type a number, then a function key: A add, S subtract, M multiply, D divide, H memory, N recall, R reciprocal, K change sign, T total."></canvas></div>
+<footer>
+  Calculator, a tool and a prototype by TheGrumpyGameDev after the 1978 type-in (uncredited, SoftSide, October 1978). Code and words made by an AI agent (Claude Code) at the author's direction. Font: Public Pixel by GGBotNet (CC0).<span class="ll-only" hidden> Feedback by LootLocker.</span><br>
+  <span class="ll-only" hidden><a href="#" id="feedback-link">Send feedback</a> · </span><a href="../index.html">all prototypes</a> · <a href="https://thegrumpygamedev.itch.io/">itch.io</a> · <a href="https://playdeezgames.github.io/oeuvre-of-splorr/">more games</a>
+</footer>
+<script src="odin.js"></script>
+<script src="lootlocker.js"></script>
+<script src="shim.js"></script>
+<script>
+// Feedback (the shared SPLORR!! LootLocker form, splorr/Tech/LootLocker.md in the vault). Hidden until
+// LL_KEY is filled in; making the LootLocker game is the user's call.
+const LL_DOMAIN = "";
+const LL_KEY = "";
+const feedback = LL_KEY ? LootLocker({ domain: LL_DOMAIN, key: LL_KEY, version: "0.1.0", idKey: "calculator:ll-player" })
+  .feedbackDialog({ game: "Calculator" }) : null;
+if (feedback) {
+  document.querySelectorAll(".ll-only").forEach((el) => { el.hidden = false; });
+  document.getElementById("feedback-link").addEventListener("click", (e) => { e.preventDefault(); feedback.open(); });
+}
+startGame({ wasm: "game.wasm", width: 512, height: 288, storagePrefix: "calculator:" });
+</script>
+</body>
+</html>
