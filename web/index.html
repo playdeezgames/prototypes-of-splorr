@@ -6,40 +6,141 @@
 <title>SoftSide Prototypes</title>
 <style>
   body { margin: 0; background: #12110f; color: #e8d9a8; font: 17px/1.5 Georgia, serif; }
-  main { max-width: 36rem; margin: 0 auto; padding: 24px 16px; }
+  main { max-width: 48rem; margin: 0 auto; padding: 24px 16px; }
   h1 { font-size: 1.6rem; margin: 0 0 0.5rem; }
-  h2 { font-size: 1.1rem; margin: 1.4rem 0 0; color: #f0b13a; }
   p { color: #b8b08a; }
-  li { margin: 0.5rem 0; }
   a { color: #f0b13a; }
-  .toy { color: #8f8a6e; font-size: 0.9rem; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: end; margin: 1.2rem 0 0.6rem; }
+  .filters label { display: flex; flex-direction: column; font-size: 13px; color: #8f8a6e; }
+  .filters input, .filters select { font: 15px Georgia, serif; background: #1e1c18; color: #e8d9a8; border: 1px solid #4a4434; border-radius: 4px; padding: 5px 8px; }
+  .filters input { width: 12rem; max-width: 100%; }
+  .filters button { font: 14px Georgia, serif; background: none; color: #b8b08a; border: 1px solid #4a4434; border-radius: 4px; padding: 5px 10px; cursor: pointer; }
+  .count { font-size: 13px; color: #8f8a6e; margin: 0 0 0.4rem; }
+  .grid { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { text-align: left; padding: 0; border-bottom: 2px solid #4a4434; white-space: nowrap; }
+  th button { font: bold 14px Georgia, serif; color: #f0b13a; background: none; border: 0; padding: 6px 8px; cursor: pointer; width: 100%; text-align: left; }
+  th button::after { content: ""; color: #8f8a6e; margin-left: 4px; }
+  th[aria-sort="ascending"] button::after { content: "▲"; }
+  th[aria-sort="descending"] button::after { content: "▼"; }
+  td { padding: 6px 8px; border-bottom: 1px solid #2a2720; vertical-align: top; }
+  tbody tr:hover { background: #1c1a16; }
+  .type { font-size: 13px; text-transform: lowercase; color: #8f8a6e; }
+  .type-game { color: #b8b08a; }
+  .desc { display: block; font-size: 13px; color: #8f8a6e; }
+  .none { color: #8f8a6e; padding: 1rem 8px; }
   footer { color: #8f8a6e; font-size: 13px; margin-top: 2rem; }
   footer a { color: #b8b08a; }
+  @media (max-width: 560px) { .desc { display: none; } }
 </style>
 </head>
 <body>
 <main>
 <h1>SoftSide Prototypes</h1>
-<p>New takes on the type-in programs from <em>SoftSide</em> magazine, by TheGrumpyGameDev. Code and words made by an AI agent (Claude Code) at the author's direction.</p>
-<h2>August 1979</h2>
-<ul>
-  <li><a href="melt-down/index.html">Melt Down</a>: keep a failing reactor from melting down (after Michael Winter).</li>
-  <li><a href="shooting-gallery/index.html">Shooting Gallery</a>: twenty shots at a carnival gallery (after Frank B. Rowlett, Jr.).</li>
-  <li><a href="cryptogram/index.html">Cryptogram</a>: crack a saying in a letter-substitution code (after Rik Pierce).</li>
-  <li><a href="morse-code-tutor/index.html">Morse Code Tutor</a>: learn Morse code by ear, level by level (after Donald E. Smith).</li>
-  <li><a href="storybook/index.html">Storybook</a> <span class="toy">(a toy)</span>: a picture story starring the child reading it (after Otto Hansen).</li>
-</ul>
-<h2>October 1978 (the first issue)</h2>
-<ul>
-  <li><a href="pillbox/index.html">Pillbox</a>: shell the other pillbox over a mountain; first to five hits (after Gene Perkins).</li>
-  <li><a href="gunnery-mate/index.html">Gunnery Mate</a>: fire when a raider crosses one of yer batteries (after "Death Star").</li>
-  <li><a href="state-capital-quiz/index.html">State Capital Quiz</a>: fifty capitals against the clock (after the uncredited quiz).</li>
-  <li><a href="cribbage/index.html">Cribbage</a>: you against the computer, to 121 (after the uncredited listing).</li>
-  <li><a href="calculator/index.html">Calculator</a> <span class="toy">(a tool)</span>: a desk calculator with a paper tape (after the uncredited listing).</li>
-</ul>
-<p>Keyboard, mouse or touch. Best scores are kept in your browser.</p>
+<p>New takes on the type-in programs from <em>SoftSide</em> magazine, by TheGrumpyGameDev. Code and words made by an AI agent (Claude Code) at the author's direction. The author column credits each original listing.</p>
+
+<div class="filters">
+  <label>Search <input id="q" type="search" placeholder="name, author, what it is"></label>
+  <label>Type <select id="type"><option value="">All</option><option value="game">Game</option><option value="tool">Tool</option><option value="toy">Toy</option></select></label>
+  <label>Issue <select id="issue"><option value="">All</option><option value="197810">October 1978</option><option value="197811">November 1978</option><option value="197908">August 1979</option></select></label>
+  <button id="reset" type="button">Clear</button>
+</div>
+<p class="count" id="count" aria-live="polite"></p>
+<div class="grid">
+<table id="grid">
+<thead><tr>
+  <th data-key="name" aria-sort="ascending"><button type="button">Name</button></th>
+  <th data-key="type"><button type="button">Type</button></th>
+  <th data-key="month"><button type="button">Month</button></th>
+  <th data-key="year"><button type="button">Year</button></th>
+  <th data-key="author"><button type="button">Author</button></th>
+</tr></thead>
+<tbody>
+<tr data-issue="197908" data-type="game"><td><a href="melt-down/index.html">Melt Down</a><span class="desc">Keep a failing reactor from melting down.</span></td><td class="type type-game">Game</td><td>August</td><td>1979</td><td>Michael Winter</td></tr>
+<tr data-issue="197908" data-type="game"><td><a href="shooting-gallery/index.html">Shooting Gallery</a><span class="desc">Twenty shots at a carnival gallery.</span></td><td class="type type-game">Game</td><td>August</td><td>1979</td><td>Frank B. Rowlett, Jr.</td></tr>
+<tr data-issue="197908" data-type="game"><td><a href="cryptogram/index.html">Cryptogram</a><span class="desc">Crack a saying in a letter-substitution code.</span></td><td class="type type-game">Game</td><td>August</td><td>1979</td><td>Rik Pierce</td></tr>
+<tr data-issue="197908" data-type="game"><td><a href="morse-code-tutor/index.html">Morse Code Tutor</a><span class="desc">Learn Morse code by ear, level by level.</span></td><td class="type type-game">Game</td><td>August</td><td>1979</td><td>Donald E. Smith</td></tr>
+<tr data-issue="197908" data-type="toy"><td><a href="storybook/index.html">Storybook</a><span class="desc">A picture story starring the child reading it.</span></td><td class="type">Toy</td><td>August</td><td>1979</td><td>Otto Hansen</td></tr>
+<tr data-issue="197810" data-type="game"><td><a href="pillbox/index.html">Pillbox</a><span class="desc">Shell the other pillbox over a mountain; first to five hits.</span></td><td class="type type-game">Game</td><td>October</td><td>1978</td><td>Gene Perkins</td></tr>
+<tr data-issue="197810" data-type="game"><td><a href="gunnery-mate/index.html">Gunnery Mate</a><span class="desc">Fire when a raider crosses one of yer batteries (after "Death Star").</span></td><td class="type type-game">Game</td><td>October</td><td>1978</td><td>Uncredited</td></tr>
+<tr data-issue="197810" data-type="game"><td><a href="state-capital-quiz/index.html">State Capital Quiz</a><span class="desc">Fifty capitals against the clock.</span></td><td class="type type-game">Game</td><td>October</td><td>1978</td><td>Uncredited</td></tr>
+<tr data-issue="197810" data-type="game"><td><a href="cribbage/index.html">Cribbage</a><span class="desc">You against the computer, to 121.</span></td><td class="type type-game">Game</td><td>October</td><td>1978</td><td>Uncredited</td></tr>
+<tr data-issue="197810" data-type="tool"><td><a href="calculator/index.html">Calculator</a><span class="desc">A desk calculator with a paper tape.</span></td><td class="type">Tool</td><td>October</td><td>1978</td><td>Uncredited</td></tr>
+<tr data-issue="197811" data-type="game"><td><a href="trolls-gold/index.html">Troll's Gold</a><span class="desc">Steal the troll's gold and get out while the doors keep changing.</span></td><td class="type type-game">Game</td><td>November</td><td>1978</td><td>George Blank</td></tr>
+<tr data-issue="197811" data-type="game"><td><a href="end-zone/index.html">End Zone</a><span class="desc">Football for two, or against the computer; secret plays against secret defenses.</span></td><td class="type type-game">Game</td><td>November</td><td>1978</td><td>Roger Robitaille</td></tr>
+<tr data-issue="197811" data-type="tool"><td><a href="shopping-list/index.html">Shopping List</a><span class="desc">Pick groceries aisle by aisle, tick them off in the store.</span></td><td class="type">Tool</td><td>November</td><td>1978</td><td>Uncredited</td></tr>
+<tr data-issue="197811" data-type="tool"><td><a href="octal-to-hex/index.html">Octal to Hex</a><span class="desc">A byte in octal, hex, decimal, binary and TRS-80 characters.</span></td><td class="type">Tool</td><td>November</td><td>1978</td><td>Lance Micklus</td></tr>
+</tbody>
+</table>
+<p class="none" id="none" hidden>Nothing matches. <a href="#" id="none-reset">Clear the filters</a>.</p>
+</div>
+
+<p>Keyboard, mouse or touch. Best scores, records and yer shopping list are kept in your browser.</p>
 <footer>Latest version: <a href="https://playdeezgames.github.io/prototypes-of-splorr/">playdeezgames.github.io/prototypes-of-splorr</a>. Font: Public Pixel by GGBotNet (CC0).<br>
 <a href="https://thegrumpygamedev.itch.io/">itch.io</a> · <a href="https://playdeezgames.github.io/oeuvre-of-splorr/">more games</a></footer>
 </main>
+<script>
+"use strict";
+// The grid: sorted by name to start; click a heading to sort by it (again to reverse). Month and
+// year sort by the issue date, so October comes before November; ties fall back to the name.
+(() => {
+  const table = document.getElementById("grid");
+  const body = table.tBodies[0];
+  const rows = Array.from(body.rows);
+  const heads = Array.from(table.tHead.rows[0].cells);
+  const q = document.getElementById("q");
+  const type = document.getElementById("type");
+  const issue = document.getElementById("issue");
+  const count = document.getElementById("count");
+  const none = document.getElementById("none");
+  const COL = { name: 0, type: 1, month: 2, year: 3, author: 4 };
+  let key = "name", dir = 1;
+
+  const text = (r, k) => k === "name" ? r.cells[0].querySelector("a").textContent : r.cells[COL[k]].textContent;
+  const sortValue = (r, k) => {
+    if (k === "month" || k === "year") return r.dataset.issue;
+    if (k === "author" && text(r, k) === "Uncredited") return "￿"; // uncredited after the names
+    return text(r, k).toLowerCase();
+  };
+  const byName = (a, b) => text(a, "name").localeCompare(text(b, "name"));
+
+  const render = () => {
+    const needle = q.value.trim().toLowerCase();
+    const sorted = rows.slice().sort((a, b) => {
+      const c = sortValue(a, key).localeCompare(sortValue(b, key));
+      return c !== 0 ? c * dir : byName(a, b);
+    });
+    let shown = 0;
+    for (const r of sorted) {
+      const ok = (!type.value || r.dataset.type === type.value) &&
+        (!issue.value || r.dataset.issue === issue.value) &&
+        (!needle || r.textContent.toLowerCase().includes(needle));
+      r.hidden = !ok;
+      if (ok) shown++;
+      body.appendChild(r);
+    }
+    for (const h of heads) {
+      if (h.dataset.key === key) h.setAttribute("aria-sort", dir > 0 ? "ascending" : "descending");
+      else h.removeAttribute("aria-sort");
+    }
+    count.textContent = shown === rows.length ? `All ${rows.length} programs` : `${shown} of ${rows.length} programs`;
+    none.hidden = shown > 0;
+  };
+
+  for (const h of heads) {
+    h.querySelector("button").addEventListener("click", () => {
+      if (key === h.dataset.key) dir = -dir; else { key = h.dataset.key; dir = 1; }
+      render();
+    });
+  }
+  q.addEventListener("input", render);
+  type.addEventListener("change", render);
+  issue.addEventListener("change", render);
+  const reset = () => { q.value = ""; type.value = ""; issue.value = ""; render(); };
+  document.getElementById("reset").addEventListener("click", reset);
+  document.getElementById("none-reset").addEventListener("click", (e) => { e.preventDefault(); reset(); });
+  render();
+})();
+</script>
 </body>
 </html>
