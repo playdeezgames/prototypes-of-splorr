@@ -43,6 +43,13 @@ SHOTS = [
     # 13-end-zone is taken in real time by tools/rt_shot.mjs (see make_shots.sh): its many steps lose keys under virtual time.
     ("14-shopping-list", "shopping-list", (512, 320), SHOP_KEYS, 10000),
     ("15-octal-to-hex", "octal-to-hex", (384, 240), OCT_KEYS, 9000),
+    # The fourth batch (Vol. 1 No. 3, December 1978).
+    ("16-santa-paravia", "santa-paravia", (512, 320), [(600 + i * 600, ENTER) for i in range(5)], 6500),
+    ("17-spelling-bee", "spelling-bee", (512, 288), [(1500, "1"), (2200, "1")], 5800),
+    ("18-biorhythms", "biorhythms", (512, 320), [], 3000),
+    ("19-mortgage", "mortgage", (640, 360), [], 3000),
+    ("20-ham-clock", "ham-clock", (384, 240), [(1500 + i * 150, k) for i, k in enumerate(["W", "1", "A", "W", ENTER, " "])], 9000),
+    ("21-chess-clock", "chess-clock", (384, 240), [(600, " "), (3600, " "), (5200, " ")], 9000),
 ]
 
 
