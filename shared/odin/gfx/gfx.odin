@@ -10,6 +10,7 @@ foreign import host "gfx"
 @(default_calling_convention = "contextless")
 foreign host {
 	gfx_now_ms :: proc() -> f64 ---
+	gfx_tz_offset_min :: proc() -> i32 ---
 	gfx_random :: proc() -> f64 ---
 	gfx_clear :: proc(rgb: u32) ---
 	gfx_rect :: proc(x, y, w, h: f32, rgb: u32) ---
@@ -32,6 +33,8 @@ Wave :: enum i32 {
 CELL :: 8
 
 now_ms :: proc() -> f64 {return gfx_now_ms()}
+// Minutes to add to UTC for the browser's local time (east of Greenwich positive).
+tz_offset_min :: proc() -> int {return int(gfx_tz_offset_min())}
 random :: proc() -> f64 {return gfx_random()}
 clear :: proc(rgb: u32) {gfx_clear(rgb)}
 
