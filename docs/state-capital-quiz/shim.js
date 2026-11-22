@@ -83,6 +83,8 @@ function startGame(cfg) {
   const imports = {
     gfx: {
       gfx_now_ms: () => Date.now(),
+      // Minutes to add to UTC for local time (east positive; the opposite sign of getTimezoneOffset).
+      gfx_tz_offset_min: () => -new Date().getTimezoneOffset(),
       gfx_random: () => Math.random(),
       gfx_clear: (rgb) => {
         layout();
