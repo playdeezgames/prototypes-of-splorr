@@ -1,0 +1,28 @@
+# SoftSide Vol. 1 No. 4 (January 1979): program listings
+
+Source: https://www.atarimania.com/mags/pdf/SoftSide_Vol_1_No_04.pdf (downloaded November 22, 2026). The fourth issue.
+TRS-80 Level II BASIC. `softside.txt` is the PDF's own OCR text layer (`pdftotext -layout`); the articles read well but every listing's OCR is garbled, so read the listings from the page scans (`pdftoppm -r 110`).
+
+PDF page numbers match the magazine's printed page numbers.
+
+| Program | Author | Pages | Kind | Verdict |
+|---|---|---|---|---|
+| 'Round the Horn | Rev. George Blank | pp. 8-24 | One to three players race clipper ships (Flying Cloud, Challenge and a third) from New York to San Francisco round Cape Horn; winds, currents, leeway, tacking, doldrums, shipwreck | Strong candidate (largest build) |
+| Ten Pin Bowling | Frank B. Rowlett, Jr. (October 7, 1978) | pp. 40-48 | Hot-seat ten-pin bowling: the ball sweeps side to side, throw straight or with a break left or right; pins, splits, full scoring sheet | Strong candidate |
+| Kiddy Slot | David Boike (October 18, 1978) | pp. 35-37 | A children's three-reel slot machine: ten "zzoopps", a spin costs one, three of a kind pays five; three big block-graphic pictures (two faces and a lollipop) | Weak (only as a Toy) |
+| Comput-A-Sketch | Albert C. Blackwell, Jr. (1978) | pp. 58-59 | A sketching toy after the mechanical one: eight direction keys draw, shifted keys move the stylus without drawing, C clears; a bordered pad | Only as a Toy (small) |
+| High Speed Graphics (Figure 1 demo) | Frank B. Rowlett, Jr. | pp. 53-55 | An article timing SET vs POKE vs PRINT to fill the screen, and a block-graphic shape printed anywhere with cursor control codes | Not a program to build |
+
+Not programs to build: the editorial "Just to Let You Know" (pp. 4-5); the Programming Hints (p. 6, a blinking star while writing tape; p. 7, always use THEN); "Writing Good Computer Games, Part I: Philosophy" by George Blank (pp. 29-33, an essay; Part II, using 'Round the Horn as its example, was due in February); ads for End Zone (p. 2), Ham Radio (p. 16), Star Trek III (p. 17), Santa Paravia (p. 34), Microchess (p. 26), TRS-80 FORTRAN (p. 27), Renumber (p. 38), Micro-Tax '78 (p. 39), Sargon (p. 49), Bridge Challenger (p. 50), Pork Barrel (p. 52), Text Editor (p. 56) and the Market Basket catalogue (pp. 61-70); back issues (p. 71) and next issue (p. 72).
+
+## 'Round the Horn
+The cover feature, written to the magazine's own request for "a simulation of a passage through the Straits of Magellan in a trading ship of the 1800's", turned into a race. History tampered with: the Flying Cloud (1851, 89 days 21 hours, the record) and the Challenge (108 days) leave New York on the same day as a third ship. Play alone against the record or with up to two friends. A map of the Americas (N for New England, S for San Francisco, ! for yer ship, the other ships by initial). Each turn you give a course (a number, or N, E, S, W); then a view of the ship, the sea, any land in sight off the bow, and the fore topmast staysail, whose size and side show the tack and point of sail (close hauled, reach, running; bigger is faster). No sailing closer than 45 degrees to the wind: the course is pushed off automatically and back when the wind changes; Z turns 22.5 degrees to starboard, / to port. A compass, PORT or STARB'D on a course change, wind direction and speed, the ship's calendar, and latitude and longitude. Leeway and ocean currents set the ship off course (a table of twelve currents with their bounds, directions and speeds: Japan Current, Gulf Stream, Canaries, North and South Equatorial, Guinea, Humboldt, Brazil, Benguela, West Wind Drift) and five climatic regions (Horse Latitudes, Northeast Trades, Doldrums, Southeast Trades, Roaring Forties) set the weather, checked at the start of each turn. Six Notices to Mariners (Long Island Sound's onshore current, the Cape Horn passage south of 55 30 S to 72 W, polar ice south of 64 S, Caribbean reefs, calms off northeast South America and southern Mexico, capes; land is checked only due N, E, S and W). Arrive in the S square in the fewest days.
+
+## Ten Pin Bowling
+Instructions, then the bowlers take turns, ten frames, a scoring sheet drawn in block graphics (strikes and spares marked). The ball moves side to side across the foul line; wait until it is where you want it, then press one of three arrow keys: straight down the alley, or breaking left (up arrow) or right (down arrow) as it travels. As in real bowling you cannot strike with a straight ball; it must break. Scoring depends on skill (the right throw at the right time); the only chance in it is a 7-10 split, which the bowler converts one time in three with a correct throw. Strikes and spares in the tenth earn the extra balls. The article sends you to High Speed Graphics for the PRINT-string drawing.
+
+## Kiddy Slot
+For children. Ten ZZOOPPS to start; a spin costs one; three matching pictures win five. Press ENTER to spin; three reels each pick one of three large SET-drawn pictures (two kinds of smiling face and a lollipop); "Y O U  W I N" and "H U R R A Y !" flash on a match, "S O R R Y - THEY DON'T ALL MATCH" otherwise; out of zzoopps starts over at ten. Pure luck, a single button; at most a Toy (and a slot machine for small children needs care).
+
+## Comput-A-Sketch
+After the mechanical sketch toy. Eight letter keys draw in the four directions and the diagonals (check the key map on the p. 59 scan before building); shifted keys move the stylus point without drawing (and erase what they cross); the border keeps the point in; C clears the pad and redraws the key chart at the left. A small Toy.
