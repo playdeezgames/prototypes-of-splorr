@@ -336,7 +336,7 @@ draw :: proc() {
 	case .Rolling:
 		draw_lane(app.standing, true)
 	case .Result:
-		draw_lane(app.standing, true)
+		draw_lane(app.standing - app.roll.down, false) // what the ball left
 		gfx.text_c(W / 2, 220, app.message, app.msg_col, app.msg_col == GOLD || app.msg_col == GREEN ? 2 : 1)
 	case .Over:
 		draw_lane(bw.Pins{}, false)
@@ -517,8 +517,8 @@ draw_setup :: proc() {
 		gfx.text(36, y + 3, fmt.tprintf("BOWLER %d", i + 1), i == app.sel ? GOLD : DIM)
 		gfx.button(120, y, app.computer[i] ? "COMPUTER" : "PERSON  ", ID_SEAT + i, app.computer[i] ? DIM : TEXT, BTN)
 	}
-	gfx.button(W / 2 - 40, 192, "BOWL!", ID_START, BG, GOLD, 2)
-	gfx.text_c(W / 2, 212, fmt.tprintf("BEST GAME %d   1-4, SPACE, ENTER", app.best), DIM)
+	gfx.button(W / 2 - 40, 186, "BOWL!", ID_START, BG, GOLD, 2)
+	gfx.text_c(W / 2, 218, fmt.tprintf("BEST GAME %d   1-4, SPACE, ENTER", app.best), DIM)
 	gfx.text_c(W / 2, 230, "AFTER FRANK B. ROWLETT, JR., SOFTSIDE 1979", DIM)
 }
 

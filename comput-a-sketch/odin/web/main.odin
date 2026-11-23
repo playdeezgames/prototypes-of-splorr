@@ -159,7 +159,9 @@ on_key :: proc "c" (code: i32, down: i32) {
 	if is_arrow {
 		if down == 1 {
 			app.held += {arrow}
-			app.held_acc = 1.0 / 30 // the first step at once
+			// The first step at once (a tap draws one dot), then a pause before the run.
+			if dir, ok := held_dir(); ok {sk.draw(&app.pad, dir)}
+			app.held_acc = -0.15
 		} else if down == 0 {
 			app.held -= {arrow}
 		}
@@ -221,7 +223,7 @@ draw :: proc() {
 
 draw_chart :: proc() {
 	gfx.text(6, 8, "DRAW KEYS", GOLD)
-	keys := [?]string{"R-->", "L<--", "U-^", "D-DWN", "Z-^&<--", "S-->&DWN", "M-->&^", "K-DWN&<--", "C-CLR SCREEN"}
+	keys := [?]string{"R-->", "L<--", "U-^", "D-DWN", "Z-^&<--", "S-->&DWN", "M-->&^", "K-DWN&<--", "C-CLEAR"}
 	for k, i in keys {gfx.text(6, 22 + i * 10, k, TEXT)}
 	gfx.text(6, 116, "*******", DIM)
 	gfx.text(6, 128, "SHIFT POINT", GOLD)
