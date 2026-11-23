@@ -23,6 +23,7 @@ STORY_KEYS = [(600, ENTER)] + [(900 + i * 120, c) for i, c in enumerate("WREN")]
 CALC_KEYS = [(2500 + i * 150, k) for i, k in enumerate(["1", "2", ENTER, "A", "3", "0", ENTER, "D", "7", ENTER, "H", "M", "2", ENTER])]
 SHOP_KEYS = [(600 + i * 120, k) for i, k in enumerate(["1", "2", ENTER, "1", "2", ENTER, "3", "0", ENTER, "4", "4", ENTER, "6", "1", ENTER, "9", "0", ENTER, "1", "1", "5", ENTER])]
 OCT_KEYS = [(1500 + i * 200, k) for i, k in enumerate(["C", "1", "0", "1", ENTER, "C", "7", "7", ENTER, "C", "2", "6", "7"])]
+SKETCH_KEYS = [(600 + i * 50, c) for i, c in enumerate("RRRRRRRRRRRRRRRRUUUUUUUUUUUULLLLLLLLLLLLLLLLDDDDDDDDDDDDUUUUUUUUUUUUMMMMMMMMSSSSSSSSDDDDDDDDDDDDLLLLLUUUUUUULLLLDDDDDDD")]
 SHOTS = [
     ("01-melt-down", "melt-down", (576, 320), [(600, "1")], 8500),
     ("02-shooting-gallery", "shooting-gallery", (384, 240),
@@ -50,6 +51,9 @@ SHOTS = [
     ("19-mortgage", "mortgage", (640, 360), [], 3000),
     ("20-ham-clock", "ham-clock", (384, 240), [(1500 + i * 150, k) for i, k in enumerate(["W", "1", "A", "W", ENTER, " "])], 9000),
     ("21-chess-clock", "chess-clock", (384, 240), [(600, " "), (3600, " "), (5200, " ")], 9000),
+    # The fifth batch (Vol. 1 No. 4, January 1979).
+    # 22-round-the-horn, 23-ten-pin-bowling and 24-kiddy-slot are taken in real time by tools/rt_shot.mjs (see make_shots.sh).
+    ("25-comput-a-sketch", "comput-a-sketch", (384, 240), SKETCH_KEYS, 9000),
 ]
 
 
