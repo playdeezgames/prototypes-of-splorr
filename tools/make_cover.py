@@ -23,10 +23,10 @@ def centred(y, text, size, fill):
 
 centred(20, "SOFTSIDE", 44, GOLD)
 centred(74, "PROTOTYPES", 28, INK)
-centred(114, "TEN TYPE-INS FROM 1978 AND 1979", 14, DIM)
+centred(114, "25 TYPE-INS FROM 1978 AND 1979", 14, DIM)
 
 # Six screenshots, three by two, each 190 wide.
-tiles = ["01-melt-down", "07-pillbox", "05-storybook", "10-cribbage", "02-shooting-gallery", "11-calculator"]
+tiles = ["16-santa-paravia", "22-round-the-horn", "01-melt-down", "13-end-zone", "10-cribbage", "25-comput-a-sketch"]
 tw, gap, top, row_h = 190, 14, 150, 156
 for i, name in enumerate(tiles):
     s = Image.open(os.path.join(SHOTS, name + ".png")).convert("RGB")
