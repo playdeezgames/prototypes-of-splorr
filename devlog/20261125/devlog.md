@@ -1,6 +1,6 @@
 # SoftSide Prototypes: first release
 
-Draft for the itch.io devlog (post type: Launch). Posting it needs the user's yes. Updated November 24, 2026; count corrected to twenty-four November 25, 2026; posted November 25, 2026 at the user's word.
+Draft for the itch.io devlog (post type: Launch). Posting it needs the user's yes. Updated November 24, 2026; count corrected to twenty-four November 25, 2026; posted November 25, 2026 at the user's word ("post the dev log"): https://thegrumpygamedev.itch.io/softside-prototypes/devlog/1805555/softside-prototypes-first-release
 
 ---
 
