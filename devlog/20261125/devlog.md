@@ -1,12 +1,12 @@
 # SoftSide Prototypes: first release
 
-Draft for the itch.io devlog (post type: Launch). Posting it needs the user's yes. Updated November 24, 2026 for all twenty-five.
+Draft for the itch.io devlog (post type: Launch). Posting it needs the user's yes. Updated November 24, 2026; count corrected to twenty-four November 25, 2026; posted November 25, 2026 at the user's word.
 
 ---
 
-**Twenty-five type-ins from 1978 and 1979**
+**Twenty-four type-ins from 1978 and 1979**
 
-*SoftSide* magazine printed programs for its readers to type in. Here are twenty-five of them from five issues, remade for the browser and gathered on one hub you can sort by name, type, issue or author.
+*SoftSide* magazine printed programs for its readers to type in. Here are twenty-four of them from five issues, remade for the browser and gathered on one hub you can sort by name, type, issue or author.
 
 A few to start with:
 

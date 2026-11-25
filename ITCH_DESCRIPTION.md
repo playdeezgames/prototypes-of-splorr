@@ -1,13 +1,13 @@
 # itch.io page copy: SoftSide Prototypes
 
 Page: https://thegrumpygamedev.itch.io/softside-prototypes (title "SoftSide Prototypes", the user's pick November 24, 2026; created as a Draft through Chrome the same day, edit id 5435088; first release booked for November 25, 2026 in Coxswain, channel `html`).
-Pasted in by hand; nothing here is published by the repo. Cover: `assets/cover.png` (630 by 500, made by `tools/make_cover.py`). Screenshots: `assets/screenshots/` in order, 01 to 25 (made by `tools/make_shots.sh`). The upload's `index.html` is the hub page listing all twenty-five. Updated November 24, 2026 for all five issues (twenty-five programs).
+Pasted in by hand; nothing here is published by the repo. Cover: `assets/cover.png` (630 by 500, made by `tools/make_cover.py`). Screenshots: `assets/screenshots/` in order, 01 to 25 (made by `tools/make_shots.sh`). The upload's `index.html` is the hub page listing all twenty-four (25 screenshots: Melt Down has two). Updated November 24, 2026 for all five issues; the count corrected from twenty-five to twenty-four November 25, 2026.
 
 Page settings: Kind of project HTML; tick "This file will be played in the browser"; embed "Click to launch in fullscreen"; mobile friendly. Custom noun Metaphor. No payments. AI disclosure: Code, Text, Graphics, Sounds (the pictures and tones are drawn and synthesised by code Claude wrote). External link "Latest version (GitHub Pages)": https://playdeezgames.github.io/prototypes-of-splorr/
 
 ## Short description (the one-line field)
 
-Twenty-five type-ins from SoftSide magazine, 1978 and 1979, remade for the browser: metaphors, toys and tools.
+Twenty-four type-ins from SoftSide magazine, 1978 and 1979, remade for the browser: metaphors, toys and tools.
 
 (111 characters; itch.io allows 120.)
 
@@ -15,7 +15,7 @@ Twenty-five type-ins from SoftSide magazine, 1978 and 1979, remade for the brows
 
 **Latest version:** https://playdeezgames.github.io/prototypes-of-splorr/
 
-*SoftSide* magazine printed BASIC programs for its readers to type in by hand. These are new takes on twenty-five of them from five issues, rebuilt for the browser and gathered on one hub you can sort and search. They are prototypes: small, quick, and open to change.
+*SoftSide* magazine printed BASIC programs for its readers to type in by hand. These are new takes on twenty-four of them from five issues, rebuilt for the browser and gathered on one hub you can sort and search. They are prototypes: small, quick, and open to change.
 
 ### From October 1978 (the first issue)
 
