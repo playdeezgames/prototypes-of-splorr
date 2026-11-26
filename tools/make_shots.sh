@@ -23,3 +23,19 @@ if [ $# -eq 0 ] || [[ " $* " == *" 22-round-the-horn "* ]] || [[ " $* " == *" 23
     '[[0,"Enter"],[1700,"ArrowUp"]]'
   node tools/rt_shot.mjs http://127.0.0.1:8791/kiddy-slot/index.html 768 480 assets/screenshots/24-kiddy-slot.png 2600 '[[0,"Enter"]]'
 fi
+# February and March 1979 in real time: a Prize Board pair turned up, an Elements Quiz question, a Dive Bomb
+# pass, Jig Saw tries, a Tarot reading and the Fog Index editor with a sample in it.
+if [ $# -eq 0 ] || [[ " $* " == *" 26-31 "* ]]; then
+  python3 -m http.server 8792 -d build/web >/dev/null 2>&1 & srv3=$!
+  trap 'kill $srv3' EXIT
+  sleep 1
+  U=http://127.0.0.1:8792
+  node tools/rt_shot.mjs $U/prize-board/index.html 768 480 assets/screenshots/26-prize-board.png 700 \
+    '[[0,"2"],[900,"5"],[1100,"Enter"],[2200,"1"],[2300,"2"],[2500,"Enter"]]'
+  node tools/rt_shot.mjs $U/elements-quiz/index.html 768 480 assets/screenshots/27-elements-quiz.png 1500 '[[0,"1"]]'
+  node tools/rt_shot.mjs $U/dive-bomb/index.html 768 480 assets/screenshots/28-dive-bomb.png 1200 '[[0,"1"],[2500,"z"]]'
+  node tools/rt_shot.mjs $U/jig-saw/index.html 768 480 assets/screenshots/29-jig-saw.png 800 '[[0,"1"],[800,"6"],[1300,"7"],[1800,"3"]]'
+  node tools/rt_shot.mjs $U/tarot/index.html 768 480 assets/screenshots/30-tarot.png 1800 \
+    '[[0,"W"],[90,"I"],[180,"L"],[270,"L"],[360," "],[450,"I"],[540,"T"],[630," "],[720,"R"],[810,"A"],[900,"I"],[990,"N"],[1080," "],[1170,"T"],[1260,"O"],[1350,"D"],[1440,"A"],[1530,"Y"],[1620,"?"],[2000,"Enter"],[3000,"Enter"],[4100,"Enter"],[5200,"Enter"],[6300,"Enter"],[7400,"Enter"]]'
+  node tools/rt_shot.mjs $U/fog-index/index.html 768 480 assets/screenshots/31-fog-index.png 800 '[[0,"2"],[500,"2"],[1300,"Enter"]]'
+fi

@@ -54,6 +54,7 @@ SHOTS = [
     # The fifth batch (Vol. 1 No. 4, January 1979).
     # 22-round-the-horn, 23-ten-pin-bowling and 24-kiddy-slot are taken in real time by tools/rt_shot.mjs (see make_shots.sh).
     ("25-comput-a-sketch", "comput-a-sketch", (384, 240), SKETCH_KEYS, 9000),
+    # 26 to 31 (February and March 1979) are taken in real time by tools/rt_shot.mjs (see make_shots.sh).
 ]
 
 

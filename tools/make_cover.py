@@ -23,7 +23,7 @@ def centred(y, text, size, fill):
 
 centred(20, "SOFTSIDE", 44, GOLD)
 centred(74, "PROTOTYPES", 28, INK)
-centred(114, "24 TYPE-INS FROM 1978 AND 1979", 14, DIM)
+centred(114, "30 TYPE-INS FROM 1978 AND 1979", 14, DIM)
 
 # Six screenshots, three by two, each 190 wide.
 tiles = ["16-santa-paravia", "22-round-the-horn", "01-melt-down", "13-end-zone", "10-cribbage", "25-comput-a-sketch"]

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fog Index</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: #182026; color: #d8e2e8; font: 13px/1.4 system-ui, sans-serif; display: flex; flex-direction: column; }
+  #stage { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; min-height: 0; padding: 8px; }
+  #screen { image-rendering: pixelated; touch-action: none; display: block; }
+  footer { flex: 0 0 auto; text-align: center; padding: 6px 16px 10px; }
+  footer a { color: #8fd0ff; }
+</style>
+</head>
+<body>
+<div id="stage"><canvas id="screen" width="384" height="240" aria-label="Fog Index: type or paste some writing, or try a sample, and see the school grade a reader needs to follow it."></canvas></div>
+<footer>
+  Fog Index, a prototype by TheGrumpyGameDev after "Fog Index" by Rev. George Blank (SoftSide, March 1979). Syllables are counted by rule, so the index is an estimate. Samples: the King James Bible, Lincoln and the Declaration of Independence (public domain). Code and words made by an AI agent (Claude Code) at the author's direction. Font: Public Pixel by GGBotNet (CC0).<span class="ll-only" hidden> Feedback by LootLocker.</span><br>
+  <a href="#" id="paste-link">Paste text</a> · <span class="ll-only" hidden><a href="#" id="feedback-link">Send feedback</a> · </span><a href="../index.html">all prototypes</a> · <a href="https://thegrumpygamedev.itch.io/">itch.io</a> · <a href="https://playdeezgames.github.io/oeuvre-of-splorr/">more games</a>
+</footer>
+<script src="odin.js"></script>
+<script src="lootlocker.js"></script>
+<script src="shim.js"></script>
+<script>
+// Feedback (the shared SPLORR!! LootLocker form, splorr/Tech/LootLocker.md in the vault). Hidden until
+// LL_KEY is filled in; making the LootLocker game is the user's call.
+const LL_DOMAIN = "";
+const LL_KEY = "";
+const feedback = LL_KEY ? LootLocker({ domain: LL_DOMAIN, key: LL_KEY, version: "0.1.0", idKey: "fog-index:ll-player" })
+  .feedbackDialog({ game: "Fog Index" }) : null;
+if (feedback) {
+  document.querySelectorAll(".ll-only").forEach((el) => { el.hidden = false; });
+  document.getElementById("feedback-link").addEventListener("click", (e) => { e.preventDefault(); feedback.open(); });
+}
+// Pasted text reaches the game as key presses (letters, digits and punctuation; line breaks as spaces).
+const feed = (text) => {
+  const t = text.replace(/[\u2018\u2019]/g, "'").replace(/[\u201c\u201d]/g, '"').replace(/[\u2013\u2014]/g, " -- ")
+    .replace(/\s+/g, " ").replace(/[^\x20-\x7e]/g, "");
+  for (const ch of t) window.dispatchEvent(new KeyboardEvent("keydown", { key: ch }));
+};
+window.addEventListener("paste", (e) => {
+  const t = (e.clipboardData || window.clipboardData)?.getData("text");
+  if (t) { e.preventDefault(); feed(t); }
+});
+document.getElementById("paste-link").addEventListener("click", async (e) => {
+  e.preventDefault();
+  try { feed(await navigator.clipboard.readText()); } catch (err) { alert("This browser won't share the clipboard; press Ctrl+V (or Cmd+V) instead."); }
+});
+startGame({ wasm: "game.wasm", width: 384, height: 240, storagePrefix: "fog-index:" });
+</script>
+</body>
+</html>
